@@ -1,5 +1,15 @@
 from django.shortcuts import render
-from testik.models import Post
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+from .forms import CreationForm
+from .models import Post
+
+
+class SignUp(CreateView):
+    form_class = CreationForm
+    success_url = reverse_lazy('posts:index')
+    template_name = 'users/signup.html'
 
 
 def index(request):
