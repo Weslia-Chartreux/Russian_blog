@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <!-- Подключены иконки, стили и заполенены мета теги -->
+    <title>Профайл пользователя </title>
+  </head>
+  <body>
+  {% extends 'base.html' %}
+  {% block content %}
+    <main>
+      <div class="container py-5">
+        <h1>Все посты пользователя {{ profile_user.get_username }} </h1>
+        <h3>Всего постов: {{ count_posts }} </h3>
+        <article>
+          {% for post in all_posts %}
+          <ul>
+            <li>
+              Автор: {{ post.author.get_username }}
+              <a href="{% url 'profile' post.author.get_username %}">все посты пользователя</a>
+            </li>
+            <li>
+              Дата публикации: {{ post.date }}
+            </li>
+          </ul>
+          <p>
+          {{ post.text }}
+          </p>
+          <a href="{% url 'post_detail' post.id %}">подробная информация </a>
+        </article>
+        <a href="<!-- -->">все записи группы</a>
+        <hr>
+        {% endfor %}
+        <!-- Остальные посты. после последнего нет черты -->
+        <!-- Здесь подключён паджинатор -->
+      </div>
+    </main>
+    <footer class="border-top text-center py-3">
+      <p>© <!--2021 --> Copyright Русский блог</p>
+    </footer>
+  </body>
+{% endblock %}
+</html>

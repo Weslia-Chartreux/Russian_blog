@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Войти{% endblock %}
 {% block content %}
-{% load user_filters %}
   <div class="row justify-content-center">
     <div class="col-md-8 p-5">
       <div class="card">
@@ -46,7 +45,7 @@
                   {% endif %}
               </label>
               <div>
-              {{ field|addclass:'form-control' }}
+              {{ field}}
                 {% if field.help_text %}
                   <small id="{{ field.id_for_label }}-help" class="form-text text-muted">
                     {{ field.help_text|safe }}
@@ -61,7 +60,7 @@
             </button>
             <!-- Тест на внимательность. Без переопределения шаблона этого адреса
             не существует. Нужно что-то делать, иначе все упадет -->
-            <a href="{% url 'users:password_reset_form' %}" class="btn btn-link">
+            <a href="{% url 'password_reset_form' %}" class="btn btn-link">
               Забыли пароль?
             </a>
           </div>
