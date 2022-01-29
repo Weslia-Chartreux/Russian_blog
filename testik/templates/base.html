@@ -21,7 +21,7 @@
                     {{ user.get_username }}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="/}">Профиль</a></li>
+                    <li><a class="dropdown-item" href="{% url 'profile' user.get_username %}">Профиль</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
                 </ul>
             </div>

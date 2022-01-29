@@ -2,30 +2,22 @@
 <html lang="ru">
   <head>
     <!-- Подключены иконки, стили и заполенены мета теги -->
-    <title>Профайл пользователя </title>
+    <title>Группа </title>
   </head>
   <body>
   {% extends 'base.html' %}
   {% block content %}
     <main>
       <div class="container py-5">
-        <h1>Все посты пользователя {{ profile_user.get_username }} </h1>
+        <h1>Все посты группы: {{ profile_user.name }} </h1>
         <h3>Всего постов: {{ count_posts }} </h3>
         <article>
           {% for post in posts %}
           <ul>
             <li>
-              Автор: <a href="{% url 'profile' post.author.get_username %}">
-                {{ post.author.get_username }}
-              </a>
+              Автор:
+              <a href="{% url 'profile' post.author.get_username %}">{{ post.author.get_username }}</a>
             </li>
-            {% if post.group %}
-              <li>
-                  Группа: <a href="{% url 'group_profile' post.group.id %}">
-                  {{ post.group.name }}
-                  </a>
-                </li>
-            {% endif %}
             <li>
               Дата публикации: {{ post.date }}
             </li>
