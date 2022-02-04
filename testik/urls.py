@@ -3,6 +3,6 @@ from .views import index
 from django.contrib.auth import views
 
 urlpatterns = [
-    path('', index, name='posts'),
+    path('', index, name='index'),
 
 ]

@@ -12,27 +12,7 @@
     {% load static %}
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/">&#12288Русский блог</a>
-        {% if user.is_authenticated %}
-            <div class="dropdown">
-                <a class="navbar-brand" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ user.get_username }}
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="{% url 'profile' user.get_username %}">Профиль</a></li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
-                </ul>
-            </div>
-    {% else %}
-    <p>
-        <a class="btn btn-primary " href="{% url 'signup' %}">Зарегистрироваться</a>
-        <a class="btn btn-success" href="{% url 'login' %}">Войти</a>
-    </p>
-    {% endif %}
-    </nav>
-</header>
+{% include 'header.html' %}
 <main role="main" class="container">
     {% block content %}
     {% endblock content %}
