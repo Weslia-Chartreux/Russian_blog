@@ -8,8 +8,8 @@ from testik.models import Community
 
 def profile(request, username):
     profile_user = get_object_or_404(User, username=username)
-    count_posts = len(list(Post.objects.filter(author=profile_user)))
-    all_posts = Post.objects.filter(author=profile_user)
+    count_posts = len(list(profile_user.posts.all()))
+    all_posts = profile_user.posts.all()
     paginator = Paginator(all_posts, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -23,7 +23,7 @@ def profile(request, username):
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    count_posts = len(list(Post.objects.filter(author=post.author)))
+    count_posts = len(list(post.author.posts.all()))
     context = {
         'post': post,
         'count_posts': count_posts,
@@ -33,8 +33,8 @@ def post_detail(request, post_id):
 
 def group_profile(request, group_id):
     group = get_object_or_404(Community, id=group_id)
-    count_posts = len(list(Post.objects.filter(group=group)))
-    all_posts = Post.objects.filter(group=group)
+    count_posts = len(list(group.posts.all()))
+    all_posts = group.posts.all()
     paginator = Paginator(all_posts, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

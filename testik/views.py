@@ -2,15 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-
-from .forms import CreationForm
 from .models import Post
-
-
-class SignUp(CreateView):
-    form_class = CreationForm
-    success_url = '/'
-    template_name = 'users/signup.html'
 
 
 def index(request):

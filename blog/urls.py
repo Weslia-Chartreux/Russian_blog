@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('testik.urls')),
     path('auth/', include('django.contrib.auth.urls')),
     path('', include('posts.urls')),
+    path('', include('users.urls')),
 ]
