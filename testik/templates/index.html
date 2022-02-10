@@ -18,7 +18,7 @@
                 {{ post.name }}
             </div>
             <div class="card-text">
-                {{ post.text|slice:"0:50" }} <a href="{% url 'post_detail' post.id %}">подробнее </a>
+                {{ post.text|slice:"0:30" }} <a href="{% url 'post_detail' post.id %}">подробнее </a>
             </div>
     </div>
          </div>

@@ -5,4 +5,5 @@ from django.contrib.auth import views
 urlpatterns = [
     path('', index, name='index'),
 
+
 ]

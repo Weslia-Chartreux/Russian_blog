@@ -1,9 +1,14 @@
 from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+from django.views.generic import CreateView
 
 from testik.models import User, Post
 
 from testik.models import Community
+
+from .forms import NewPostForm
 
 
 def profile(request, username):
@@ -44,3 +49,26 @@ def group_profile(request, group_id):
         'posts': page_obj,
     }
     return render(request, 'group_profile.html', context)
+
+
+def create_post(request):
+    if request.method == 'POST':
+
+        # Создаём экземпляр формы и заполняем данными из запроса (связывание, binding):
+        form = NewPostForm(request.POST)
+        # Проверка валидности данных формы:
+        if form.is_valid():
+            # Обработка данных из form.cleaned_data
+            new_post = Post()
+            new_post.name = form.cleaned_data['name']
+            new_post.text = form['text'].value()
+            print(form['text'].value())
+            if form['group'].value() != 'False':
+                new_post.group = get_object_or_404(Community, id=form['group'].value())
+            new_post.author = request.user
+            new_post.save()
+
+            # Переход по адресу 'index':
+            return HttpResponseRedirect(reverse('index'))
+
+    return render(request, 'new_post.html', {'form': NewPostForm()})
