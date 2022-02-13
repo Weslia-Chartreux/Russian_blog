@@ -62,7 +62,6 @@ def create_post(request):
             new_post = Post()
             new_post.name = form.cleaned_data['name']
             new_post.text = form['text'].value()
-            print(form['text'].value())
             if form['group'].value() != 'False':
                 new_post.group = get_object_or_404(Community, id=form['group'].value())
             new_post.author = request.user

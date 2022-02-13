@@ -1,0 +1,12 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: tstststt@yandex.ru
+Date: Sun, 13 Feb 2022 18:56:01 -0000
+Message-ID: <164477856199.12988.10993805910171883586@DESKTOP-VGIVV1N>
+
+Someone asked for password reset for email tstststt@yandex.ru. Follow the link below:
+http://127.0.0.1:8000/reset/MQ/b0t0xd-7451a0a209d1cd06b74e8b32b48496c7/
+-------------------------------------------------------------------------------
