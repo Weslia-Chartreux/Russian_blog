@@ -1,9 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+# За модель юзера берётся стандартная Django-модель
 User = get_user_model()
 
 
+# Модель, отвечающая за группы
 class Community(models.Model):
     name = models.CharField(max_length=100)
     header = models.CharField(max_length=400)
@@ -14,6 +16,7 @@ class Community(models.Model):
         return self.name
 
 
+# Модель, отвечающая за посты
 class Post(models.Model):
     name = models.CharField(max_length=100)
     text = models.TextField()
@@ -21,5 +24,6 @@ class Post(models.Model):
     group = models.ForeignKey(Community, on_delete=models.CASCADE, blank=True, null=True, related_name='posts')
     date = models.DateTimeField(auto_now_add=True, db_index=True)
 
+    # Сортировка по дате
     class Meta:
         ordering = ["-date"]

@@ -7,12 +7,23 @@ from django.views.generic import CreateView
 from .forms import CreationForm
 
 
+# Класс, который отвечает за показ страницы с регистрацией
 class SignUp(CreateView):
     form_class = CreationForm
     success_url = '/'
     template_name = 'signup.html'
 
 
+# Остальный классы отвечают за путь до html-страницы для страниц:
+# 'login/',
+# 'signup/',
+# 'password_change/',
+# 'password_change/done/',
+# 'password-reset/',
+# 'password-reset/done/',
+# 'reset/<uidb64>/<token>/',
+# 'reset/done/',
+# 'logout/'
 class Password_Change(PasswordChangeView):
     template_name = 'password_change_form.html'
 

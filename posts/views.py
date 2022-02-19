@@ -11,6 +11,7 @@ from testik.models import Community
 from .forms import NewPostForm
 
 
+# Функция, которая отвечает за показ страницы 'profile/<str:username>/'
 def profile(request, username):
     profile_user = get_object_or_404(User, username=username)
     count_posts = len(list(profile_user.posts.all()))
@@ -26,6 +27,7 @@ def profile(request, username):
     return render(request, 'profile.html', context)
 
 
+# Функция, которая отвечает за показ страницы 'posts/<int:post_id>/'
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     count_posts = len(list(post.author.posts.all()))
@@ -36,6 +38,7 @@ def post_detail(request, post_id):
     return render(request, 'post_detail.html', context)
 
 
+# Функция, которая отвечает за показ страницы 'group/<int:group_id>/'
 def group_profile(request, group_id):
     group = get_object_or_404(Community, id=group_id)
     count_posts = len(list(group.posts.all()))
@@ -51,14 +54,11 @@ def group_profile(request, group_id):
     return render(request, 'group_profile.html', context)
 
 
+# Функция, которая отвечает за показ страницы 'create_post/'
 def create_post(request):
     if request.method == 'POST':
-
-        # Создаём экземпляр формы и заполняем данными из запроса (связывание, binding):
         form = NewPostForm(request.POST)
-        # Проверка валидности данных формы:
         if form.is_valid():
-            # Обработка данных из form.cleaned_data
             new_post = Post()
             new_post.name = form.cleaned_data['name']
             new_post.text = form['text'].value()
@@ -66,8 +66,6 @@ def create_post(request):
                 new_post.group = get_object_or_404(Community, id=form['group'].value())
             new_post.author = request.user
             new_post.save()
-
-            # Переход по адресу 'index':
             return HttpResponseRedirect(reverse('index'))
 
     return render(request, 'new_post.html', {'form': NewPostForm()})

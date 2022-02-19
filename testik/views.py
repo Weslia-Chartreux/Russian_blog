@@ -5,6 +5,7 @@ from django.views.generic import CreateView
 from .models import Post
 
 
+# Функция, которая отвечает за показ домашней страницы
 def index(request):
     posts = Post.objects.all().order_by('-date')
     paginator = Paginator(posts, 4)
