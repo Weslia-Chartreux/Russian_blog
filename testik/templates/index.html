@@ -7,16 +7,24 @@
 <div class='container'>
     <div class='row'>
 {% for post in posts %}
-        <div class="col">
-    <div class="card col">
+        <div class="col-sm-6">
+    <div class="card">
         <h5 class="card-header"><a href="{% url 'profile' post.author.get_username %}">
                 {{ post.author }}
               </a></h5>
         <div class="card-body">
-            <h6 class="card-subtitle">{{ post.date }}</h6>
-            <div class='card-title'>
+            <h5 class='card-title'>
                 {{ post.name }}
-            </div>
+            </h5>
+            <h6 class="card-subtitle">{{ post.date }}</h6>
+            {% if post.group %}
+                <h6 class="card-title">Группа: <a href="{% url 'group_profile' post.group.id %}">
+                  {{ post.group.name }}
+                  </a></h6>
+            {% endif %}
+            {% if not post.group %}
+                <h6 class="card-title">Без группы</h6>
+            {% endif %}
             <div class="card-text">
                 {{ post.text|slice:"0:30" }} <a href="{% url 'post_detail' post.id %}">подробнее </a>
             </div>
